@@ -1,4 +1,4 @@
-// Package isugata HTTP response validator for ISUCON benchmarker
+// Package isugata is HTTP response validator for ISUCON benchmarker
 package isugata
 
 import (
