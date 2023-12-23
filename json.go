@@ -11,14 +11,14 @@ import (
 type JSONValidateOpt[V any] func(body V) error
 
 // WithJSONValidation decodes JSON body and validates it with opts
-func WithJSONValidation[V any](opt ...JSONValidateOpt[V]) ValidateOpt {
+func WithJSONValidation[V any](opts ...JSONValidateOpt[V]) ValidateOpt {
 	return func(res *http.Response) error {
 		var body V
 		if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
 			return fmt.Errorf("%w: %w", ErrUndecodableBody, err)
 		}
 
-		for _, o := range opt {
+		for _, o := range opts {
 			if err := o(body); err != nil {
 				return err
 			}
